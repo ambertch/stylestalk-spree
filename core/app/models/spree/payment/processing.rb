@@ -22,9 +22,7 @@ module Spree
               #                   "year" => "2013",
               #             "first_name" => "ambert",
               #              "last_name" => "ho"
-              # }
-              
-              ap "store_braintree_info "*100
+              # }              
               store_braintree_info
             end
           else
@@ -34,8 +32,6 @@ module Spree
       end
       
       def store_braintree_info
-        ap "ZOOM "* 100
-        ap User.where(:email => order.email)[0]
         User.where(:email => order.email)[0].store_braintree_info(source_attributes, order)
       end
       
