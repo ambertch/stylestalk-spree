@@ -68,7 +68,7 @@ module Spree
     attr_accessor :use_billing
 
     before_create :link_by_email
-    after_create :create_tax_charge!
+
 
     validates :email, :presence => true, :if => :require_email
     validates :email, :email => true, :if => :require_email, :allow_blank => true
@@ -319,11 +319,6 @@ module Spree
       shipments.each { |s| s.destroy unless s.shipping_method.available_to_order?(self) }
     end
 
-    # Creates new tax charges if there are any applicable rates. If prices already
-    # include taxes then price adjustments are created instead.
-    def create_tax_charge!
-      Spree::TaxRate.adjust(self)
-    end
 
     # Creates a new shipment (adjustment is created by shipment model)
     def create_shipment!

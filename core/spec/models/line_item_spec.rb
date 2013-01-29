@@ -26,7 +26,6 @@ describe Spree::LineItem do
       Spree::InventoryUnit.stub(:increase)
       line_item.should_receive(:update_inventory)
       # Regression check for #1481
-      order.should_receive(:create_tax_charge!)
       order.should_receive(:update!)
       line_item.save
     end
@@ -97,7 +96,6 @@ describe Spree::LineItem do
     it "applies tax adjustments" do
       # We don't care about this method for this test
       line_item.stub(:remove_inventory)
-      order.should_receive(:create_tax_charge!)
       line_item.destroy
     end
 
