@@ -7,7 +7,7 @@ module Spree
         base.class_eval do
           include Spree::Core::CurrentOrder
           include Spree::Core::RespondWith
-          include SslRequirement
+          # include SslRequirement
 
           helper_method :title
           helper_method :title=
@@ -15,12 +15,14 @@ module Spree
           helper_method :current_order
           helper_method :try_spree_current_user
 
-          before_filter :set_user_language
+          # AH
+          # before_filter :set_user_language 
           before_filter :set_current_order
 
-          rescue_from CanCan::AccessDenied do |exception|
-            return unauthorized
-          end
+          # AH
+          # rescue_from CanCan::AccessDenied do |exception|
+          #   return unauthorized
+          # end
 
           layout :get_layout
         end
