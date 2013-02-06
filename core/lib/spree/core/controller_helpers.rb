@@ -7,7 +7,7 @@ module Spree
         base.class_eval do
           include Spree::Core::CurrentOrder
           include Spree::Core::RespondWith
-          # include SslRequirement
+          include SslRequirement
 
           helper_method :title
           helper_method :title=

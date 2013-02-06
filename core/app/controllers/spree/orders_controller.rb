@@ -1,5 +1,6 @@
 module Spree
   class OrdersController < BaseController
+    #AH
     ssl_required :show
 
     rescue_from ActiveRecord::RecordNotFound, :with => :render_404

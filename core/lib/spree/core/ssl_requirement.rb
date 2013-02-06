@@ -104,9 +104,10 @@ module SslRequirement
       if ssl_required? && !request.ssl? && ssl_supported?
         redirect_to "https://" + request.host + request.fullpath
         flash.keep
-      elsif request.ssl? && !ssl_required?
-        redirect_to "http://" + request.host + request.fullpath
-        flash.keep
+      # AH
+      # elsif request.ssl? && !ssl_required?
+      #   redirect_to "http://" + request.host + request.fullpath
+      #   flash.keep
       end
 
     end
