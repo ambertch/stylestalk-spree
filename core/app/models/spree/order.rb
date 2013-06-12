@@ -448,7 +448,8 @@ module Spree
     end
 
     def process_payments!
-      begin
+      # AH: uh, raise and don't catch because we want errors to be caught in controller, and flash message passed to activate error messages
+      # begin
         pending_payments.each do |payment|
           break if payment_total >= total
 
@@ -458,9 +459,9 @@ module Spree
             self.payment_total += payment.amount
           end
         end
-      rescue Core::GatewayError
-        !!Spree::Config[:allow_checkout_on_gateway_error]
-      end
+      # rescue Core::GatewayError
+      #   !!Spree::Config[:allow_checkout_on_gateway_error]
+      # end
     end
 
     def billing_firstname

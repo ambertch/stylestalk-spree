@@ -63,11 +63,12 @@ module Spree
               end
 
               before_transition :to => :complete do |order|
-                begin
+                # AH: uh, raise and don't catch because we want errors to be caught in controller, and flash message passed to activate error messages
+                # begin
                   order.process_payments! if order.payment_required?
-                rescue Spree::Core::GatewayError
-                  !!Spree::Config[:allow_checkout_on_gateway_error]
-                end
+                # rescue Spree::Core::GatewayError
+                #   !!Spree::Config[:allow_checkout_on_gateway_error]
+                # end
               end
 
               before_transition :to => :delivery, :do => :remove_invalid_shipments!
