@@ -28,7 +28,7 @@ module Spree
 
       def destroy
         @product = Product.where(:permalink => params[:id]).first!
-        @product.delete
+        @product.destroy
 
         flash.notice = I18n.t('notice_messages.product_deleted')
 
